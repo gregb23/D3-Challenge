@@ -65,7 +65,7 @@ d3.csv("assets/data/data.csv").then(function(data){
         .attr("cx", (d) => xLinearScale(d.age))
         .attr("cy", (d) => yLinearScale(d.obesity))
         .attr("r", "12")
-        .attr("fill", "purple")
+        .attr("fill", "green")
         .attr("opacity", ".75");
 
     // add states info to circles
@@ -75,11 +75,23 @@ d3.csv("assets/data/data.csv").then(function(data){
         .enter()
         .append("text")
         .classed("abbrText", true)
-        attr("x", (d) => xLinearScale(d.age))
-        attr("y", (d) => yLinearScale(d.obesity))
-        attr("dy", 3)
-        attr("font-size", "10px")
+        .attr("x", (d) => xLinearScale(d.age))
+        .attr("y", (d) => yLinearScale(d.obesity))
+        .attr("dy", 3)
+        .attr("font-size", "10px")
+        .attr("text-anchor", "middle")
         .text((d) => d.abbr);
+
+    //tool tip
+    var toolTip = d3.tip()
+        .attr("class", "tooltip") 
+        .offset([80, -60]) 
+        .html(function (d) {
+            return `${d.state} <br> Obesity Perc : ${d.obesity}% <br> Median Age: ${d.age} `;
+        }); 
+
+    // add to chart
+    chartGroup.call(toolTip);    
 
     
 });
