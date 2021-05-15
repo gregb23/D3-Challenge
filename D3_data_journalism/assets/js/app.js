@@ -39,16 +39,22 @@ d3.csv("assets/data/data.csv").then(function(data){
     // create linear schale function
     var xLinearScale = d3
         .scaleLinear()
-        .domain([10, d3.max(data, (d) => d.age) +1])
+        .domain([30, d3.max(data, (d) => d.age) +1])
         .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-        .domain([10, d3.max(data, (d) => d.smokes) +1])
+        .domain([6, d3.max(data, (d) => d.smokes) +1])
         .range([height, 0]);
 
     //set up axis
     var xAxis = d3.axisBottom(xLinearScale);
     var yAxis = d3.axisLeft(yLinearScale);
+
+    //add axis to chart
+    chartGroup.append("g")
+        .append("transform", `translate(0, ${height})`)
+        .call(xAxis);
+    chartGroup.append("g").call(yAxis);    
 
 
     
