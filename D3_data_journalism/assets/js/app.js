@@ -87,11 +87,28 @@ d3.csv("assets/data/data.csv").then(function(data){
         .attr("class", "tooltip") 
         .offset([80, -60]) 
         .html(function (d) {
-            return `${d.state} <br> Obesity Perc : ${d.obesity}% <br> Median Age: ${d.age} `;
+            return `${d.state} <br> Obesity Rate : ${d.obesity}% <br> Median Age: ${d.age} `;
         }); 
 
     // add to chart
-    chartGroup.call(toolTip);    
+    chartGroup.call(toolTip);  
+    
+    //create axis labels
+    
+    chartGroup
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left -3)
+        .attr("x", 0 - height /1.5)
+        .attr("dy", "1em")
+        .attr("class", "axisText")
+        .text("Obesity Rate");
+
+    chartGroup
+        .append("text") 
+        .attr("transform", `translate(${width /2}, ${height + margin.top + 20})`)   
+        .attr("class", "axisText")
+        .text("Median Age");
 
     
 });
