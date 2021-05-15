@@ -1,4 +1,6 @@
 // @TODO: YOUR CODE HERE!
+
+//set up SVG 
 var svgWidth = 960;
 var svgHeight = 500;
 
@@ -18,13 +20,11 @@ var svg = d3.select("#scatter")
     .attr("width", svgWidth)
     .attr("height", svgHeight);
 
-var chartGroup = svg.append("e")    
+var chartGroup = svg.append("g")    
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 //get data
 d3.csv("data.csv").then(function(data){
-    data.forEach(fumction(data){
-        
-    })
-})
+    console.log(data);       
+});
 
