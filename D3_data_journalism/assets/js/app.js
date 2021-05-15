@@ -38,17 +38,17 @@ d3.csv("assets/data/data.csv").then(function(data){
 
     // create linear schale function
     var xLinearScale = d3
-    .scaleLinear()
-    .domain([10, d3.max(data, (d) => d.age) +1])
-    .range([0, width]);
+        .scaleLinear()
+        .domain([10, d3.max(data, (d) => d.age) +1])
+        .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-    .domain([10, d3.max(data, (d) => d.smokes) +1])
-    .range([0, height]);
+        .domain([10, d3.max(data, (d) => d.smokes) +1])
+        .range([height, 0]);
 
     //set up axis
-    var xAxis = d3.xAxis(xLinearScale);
-    var yAxis = d3.yAxis(yLinearScale);
+    var xAxis = d3.axisBottom(xLinearScale);
+    var yAxis = d3.axisLeft(yLinearScale);
 
 
     
