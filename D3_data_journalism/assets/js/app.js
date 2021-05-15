@@ -26,6 +26,14 @@ var chartGroup = svg.append("g")
 //get data
 d3.csv("assets/data/data.csv").then(function(data){
     //check to make sure data loaded properly
-    console.log(data);       
+    console.log(data);  
+    
+    //get smoker stats and age data
+    data.forEach(function (smoke){
+        smoke.smokes = +smoke.smokes;
+        smoke.smokesHigh = +smoke.smokesHigh;
+        smoke.smokesLow = +smoke.smokesLow;
+        smoke.age = +smoke.age;
+    });
 });
 
