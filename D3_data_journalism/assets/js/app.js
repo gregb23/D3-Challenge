@@ -110,6 +110,8 @@ d3.csv("assets/data/data.csv").then(function(data){
         .attr("class", "axisText")
         .text("Median Age");
 
+    //display summary data for each state    
+
     
 });
 
