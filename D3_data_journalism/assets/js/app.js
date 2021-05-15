@@ -46,6 +46,10 @@ d3.csv("assets/data/data.csv").then(function(data){
     .domain([10, d3.max(data, (d) => d.smokes) +1])
     .range([0, height]);
 
+    //set up axis
+    var xAxis = d3.xAxis(xLinearScale);
+    var yAxis = d3.yAxis(yLinearScale);
+
 
     
 });
