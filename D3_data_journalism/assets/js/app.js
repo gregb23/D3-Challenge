@@ -68,6 +68,18 @@ d3.csv("assets/data/data.csv").then(function(data){
         .attr("fill", "purple")
         .attr("opacity", ".75");
 
+    // add states info to circles
+    var textGroup = chartGroup
+        .selectAll(".abbrText")  
+        .data(data)      
+        .enter()
+        .append("text")
+        .classed("abbrText", true)
+        attr("x", (d) => xLinearScale(d.age))
+        attr("y", (d) => yLinearScale(d.obesity))
+        attr("dy", 3)
+        attr("font-size", "10px")
+        .text((d) => d.abbr);
 
     
 });
