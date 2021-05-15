@@ -29,11 +29,11 @@ d3.csv("assets/data/data.csv").then(function(data){
     console.log(data);  
     
     //get smoker stats and age data
-    data.forEach(function (smoke){
-        smoke.smokes = +smoke.smokes;
-        smoke.smokesHigh = +smoke.smokesHigh;
-        smoke.smokesLow = +smoke.smokesLow;
-        smoke.age = +smoke.age;
+    data.forEach(function (obesity){
+        obesity.obesity = +obesity.obesity;
+        obesity.obesityHigh = +obesity.obesityHigh;
+        obesity.obesityLow = +obesity.obesityLow;
+        obesity.age = +obesity.age;
     });
 
     // create linear schale function
@@ -43,7 +43,7 @@ d3.csv("assets/data/data.csv").then(function(data){
         .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-        .domain([6, d3.max(data, (d) => d.smokes) +1])
+        .domain([6, d3.max(data, (d) => d.obesity) +1])
         .range([height, 0]);
 
     //set up axis
@@ -57,10 +57,16 @@ d3.csv("assets/data/data.csv").then(function(data){
     chartGroup.append("g").call(yAxis); 
     
     //create circles for plot
-    var circlesGroup = chartGroup.sellectAll("circle")
+    var circlesGroup = chartGroup
+        .selectAll("circle")
         .data(data)
         .enter()
-        .append("circle");
+        .append("circle")
+        .attr("cx", (d) => xLinearScale(d.age))
+        .attr("cy", (d) => yLinearScale(d.obesity))
+        .attr("dy", 3)
+        .attr("font-size", "10px")
+        .text((d) => d.abbr);
 
 
     
