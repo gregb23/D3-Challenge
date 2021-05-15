@@ -35,5 +35,18 @@ d3.csv("assets/data/data.csv").then(function(data){
         smoke.smokesLow = +smoke.smokesLow;
         smoke.age = +smoke.age;
     });
+
+    // create linear schale function
+    var xLinearScale = d3
+    .scaleLinear()
+    .domain([10, d3.max(data, (d) => d.age) +1])
+    .range([0, width]);
+
+    var yLinearScale = d3.scaleLinear()
+    .domain([10, d3.max(data, (d) => d.smokes) +1])
+    .range([0, height]);
+
+
+    
 });
 
