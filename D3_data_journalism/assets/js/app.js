@@ -102,7 +102,7 @@ d3.csv("assets/data/data.csv").then(function(data){
         .attr("x", 0 - height /1.5)
         .attr("dy", "1em")
         .attr("class", "axisText")
-        .text("Obesity Rate");
+        .text("Average Obesity Rate");
 
     chartGroup
         .append("text") 
@@ -110,7 +110,15 @@ d3.csv("assets/data/data.csv").then(function(data){
         .attr("class", "axisText")
         .text("Median Age");
 
-    //display summary data for each state    
+    //display summary data for each state   
+    circlesGroup
+        .on("mouseover", function (data) {
+            toolTip.show(data, this);
+
+        })
+        .on("mouseout", function (data) {
+            toolTip.hide(data);
+        });
 
     
 });
